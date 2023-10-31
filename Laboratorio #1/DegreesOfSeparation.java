@@ -74,6 +74,7 @@ public class DegreesOfSeparation {
         }
         /*Si la cola se vacia y no se encuentra el segundo nombre, se retorna -1, 
          *pues los nombres no estan conectados por ningun camino.**/
+        System.out.println("No se encontro un camino entre los nombres introducidos.");
         return -1;
     }
 
