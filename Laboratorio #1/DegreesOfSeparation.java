@@ -25,57 +25,56 @@ public class DegreesOfSeparation {
             System.out.println("Alguno de los nombres no se encuentra en el archivo input.txt.");
             //De no ser asi, se retorna -1.
             return -1;
-            }
-        //Verificamos si los Strings person1 y person2 son iguales:
-        if (person1.equals(person2)) {
+        //Verificamos si los Strings person1 y person2 son iguales:    
+        } else if (person1.equals(person2)) {
             System.out.println("Los nombres son iguales.");
             //De ser asi, la distancia es 0.
             return 0;
-        }
+        } else {
+            /* Si no se cumple ninguna de las condiciones anteriores, se procede a calcular 
+             * la distancia entre los Strings person1 y person2 usando el algoritmo de BFS.
 
-        /* Si no se cumple ninguna de las condiciones anteriores, se procede a calcular 
-         * la distancia entre los Strings person1 y person2 usando el algoritmo de BFS.
+             * Se crea una cola, un conjunto de visitados y un mapa de distancias para 
+             * almacenar los datos necesarios.*/
+            Queue<String> cola = new LinkedList<>();
+            Set<String> visitados = new HashSet<>();
+            Map<String, Integer> distance = new HashMap<>();
 
-         * Se crea una cola, un conjunto de visitados y un mapa de distancias para 
-         * almacenar los datos necesarios.*/
-        Queue<String> cola = new LinkedList<>();
-        Set<String> visitados = new HashSet<>();
-        Map<String, Integer> distance = new HashMap<>();
+            /* Se agrega el primer elemento a la cola, al conjunto de visitados y al mapa 
+             * de distancias.*/
+            cola.add(person1);
+            visitados.add(person1);
+            distance.put(person1, 0);
 
-        /* Se agrega el primer elemento a la cola, al conjunto de visitados y al mapa 
-         * de distancias.*/
-        cola.add(person1);
-        visitados.add(person1);
-        distance.put(person1, 0);
-
-        //Se recorre la cola hasta que esta se vacie.
-        while (!cola.isEmpty()) {
-            //Se toma el primer elemento de la cola.
-            String actual = cola.poll();
-            /*Se recorren los sucesores del elemento actual usando el metodo 
-             * .getVerticesConnectedTo() de la clase AdjacencyListGraph.*/
-            for (String sucesor : graph.getVerticesConnectedTo(actual)) {
-                //Se verifica si el sucesor no ha sido visitado.
-                if (!visitados.contains(sucesor)) {
-                    /* Si no ha sido visitado, se agrega a la cola, al conjunto 
-                     * de visitados y al mapa de distancias.*/
-                    cola.add(sucesor);
-                    visitados.add(sucesor);
-                    //La distancia del sucesor es la distancia del actual + 1.
-                    distance.put(sucesor, distance.get(actual) + 1);
-                    //Se verifica si el sucesor es el segundo nombre introducido.
-                    if (sucesor.equals(person2)) {
-                        /*Si es asi, se retorna la distancia pues hemos encontrado 
-                         *el camino mas corto de person1 a person2.*/
-                        return distance.get(sucesor);
+            //Se recorre la cola hasta que esta se vacie.
+            while (!cola.isEmpty()) {
+                //Se toma el primer elemento de la cola.
+                String actual = cola.poll();
+                /*Se recorren los sucesores del elemento actual usando el metodo 
+                 * .getVerticesConnectedTo() de la clase AdjacencyListGraph.*/
+                for (String sucesor : graph.getVerticesConnectedTo(actual)) {
+                    //Se verifica si el sucesor no ha sido visitado.
+                    if (!visitados.contains(sucesor)) {
+                        /* Si no ha sido visitado, se agrega a la cola, al conjunto 
+                         * de visitados y al mapa de distancias.*/
+                        cola.add(sucesor);
+                        visitados.add(sucesor);
+                        //La distancia del sucesor es la distancia del actual + 1.
+                        distance.put(sucesor, distance.get(actual) + 1);
+                        //Se verifica si el sucesor es el segundo nombre introducido.
+                        if (sucesor.equals(person2)) {
+                            /*Si es asi, se retorna la distancia pues hemos encontrado 
+                             *el camino mas corto de person1 a person2.*/
+                            return distance.get(sucesor);
+                        }
                     }
                 }
             }
+            /*Si la cola se vacia y no se encuentra el segundo nombre, se retorna -1, 
+             *pues los nombres no estan conectados por ningun camino.**/
+            System.out.println("No se encontro un camino entre los nombres introducidos.");
+            return -1;
         }
-        /*Si la cola se vacia y no se encuentra el segundo nombre, se retorna -1, 
-         *pues los nombres no estan conectados por ningun camino.**/
-        System.out.println("No se encontro un camino entre los nombres introducidos.");
-        return -1;
     }
 
     /**
