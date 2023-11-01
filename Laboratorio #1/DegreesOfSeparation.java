@@ -52,7 +52,7 @@ public class DegreesOfSeparation {
                 String actual = cola.poll();
                 /*Se recorren los sucesores del elemento actual usando el metodo 
                  * .getVerticesConnectedTo() de la clase AdjacencyListGraph.*/
-                for (String sucesor : graph.getVerticesConnectedTo(actual)) {
+                for (String sucesor : graph.getOutwardEdges(actual)) {
                     //Se verifica si el sucesor no ha sido visitado.
                     if (!visitados.contains(sucesor)) {
                         /* Si no ha sido visitado, se agrega a la cola, al conjunto 
