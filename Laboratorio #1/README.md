@@ -63,10 +63,9 @@ fácilmente adapatada para modelar las relaciones de amistad entre personas, las
 con los datos de input.txt, se generaran ambas conexiones, tanto de person1 a person2 como de person2 a person1, algo que la clase AdjacencyListGraph
 permitía hacer sin inconveniente alguno. Así mismo, se deció mantenerla ya que en ella el método .add() tiene una complejidad O(1) para su peor caso, 
 mientras que el metodo connect() maneja un peor caso que en la práctica es menor a O(n) habiendo implementado HashSet<T> en lugar de List<T>, y la 
-complejidad de getVerticesConnectedTo() posee un peor caso que es menor a O(n^2) considerando el cambio realizado en la implementación. Con lo cual, 
-la clase AdjacencyListGraph ya poseía una estructura con los métodos necesarios para armar el grafo pertienente para resolver el problema, con
-complejidades que, a menos que estemos en presencia de un grafo completo de tamaño exageradamente grande, permitirán dar un resultado al problema
-con cierto grado de eficiencia.
+complejidad de getOutwardEdges() que posee un peor caso O(1). Con lo cual, la clase AdjacencyListGraph ya poseía una estructura con los métodos 
+necesarios para armar el grafo pertienente para resolver el problema, con complejidades que, a menos que estemos en presencia de un grafo completo 
+de tamaño exageradamente grande, permitirán dar un resultado al problema con cierto grado de eficiencia.
 
 Por otro lado, se decidió hacer uso del BFS en lugar del DFS debido a que la búsqueda en amplitud permite garantizar que el camino conseguido entre 
 dos vertices dados es el de distancia mínima, mientras que la búsqueda en profundida no permite asegurar nada en cuanto a la longitud de los caminos 
