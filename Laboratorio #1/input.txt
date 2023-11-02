@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Alice Bob
 Bob Charlie
 Charlie David
@@ -24,8 +23,6 @@ Victor Wendy
 Wendy Xavier
 Xavier Yvonne
 Yvonne Zach
-=======
->>>>>>> 0fe983a (Update input.txt)
 Carlos Juan
 Juan Ana
 Pedro Ana
@@ -34,9 +31,5 @@ Luis Ana
 Carmen Juan
 Diego Carlos
 Elena Carlos
-<<<<<<< HEAD
 Felipe Pedro
 Anya Loid
-=======
-Felipe Pedro
->>>>>>> 0fe983a (Update input.txt)
