@@ -73,5 +73,10 @@ generados, precisamente porque ellos dependerán del criterio utilizado para sel
 solución del problema propuesto, encontrar el grado de separación entre dos personas, lo conveniente era definitivamente crear una implementación 
 para BFS que se frene una vez se consiga el camino entre person1 y person2, el cual no será otro sino el de distancia mínima.
 
+Compilación: javac AdjacencyListGraph.java DegreesOfSeparation.java
+Ejemplo de ejecución: java DegreesOfSeparation Juan Carlos
+Salida: El grado de separacion entre Juan y Carlos es: 1
+
+
 
        
