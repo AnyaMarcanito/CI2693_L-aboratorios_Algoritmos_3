@@ -18,6 +18,7 @@ interface Graph<T> {
     boolean remove(T vertex);
     int size();
     Graph<T> subgraph(Collection<T> vertices);
+    Graph<T> getSimetric();
 }
 
 class AdjacencyListGraph<T> implements Graph<T> {
@@ -193,6 +194,25 @@ class AdjacencyListGraph<T> implements Graph<T> {
             }
         }
         return subgraph;
+    }
+
+    //Metodo Simetric
+    public Graph<T> getSimetric() {
+        //Creamos un nuevo objeto tipo Graph<T>.
+        Graph<T> simetric = new AdjacencyListGraph<>();
+        //Iteramos sobre todos los vertices del grafo original.
+        for (T vertex : getAllVertices()) {
+            //Agregamos el vertice vertex al grafo simetric.
+            simetric.add(vertex);
+            //Usamos el metodo getOutwardEdges para conseguir los sucesores de vertex.
+            List<T> sucesores = getOutwardEdges(vertex);
+            //Iteramos sobre cada sucesor de vertex.
+            for (T sucesor : sucesores) {
+                //Conectamos el sucesor con vertex.
+                simetric.connect(sucesor, vertex);
+            }
+        }
+        return simetric;
     }
 
 }
