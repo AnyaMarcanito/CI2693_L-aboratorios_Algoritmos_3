@@ -114,10 +114,13 @@ class NextToYou {
             int numComercios = localidad.size();
             if (numComercios <= 2) {
                 numRepartidores += 10;
+                System.out.println("2");
             } else if (numComercios <= 5) {
                 numRepartidores += 20;
+                System.out.println("5");
             } else {
                 numRepartidores += 30;
+                System.out.println("mas");
             }
         }
         return numRepartidores;
