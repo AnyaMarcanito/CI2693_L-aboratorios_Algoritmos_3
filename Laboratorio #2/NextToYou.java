@@ -1,42 +1,42 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 class NextToYou {
-    private static int time;
     private static int numComponente;
 
     public static Map<String, Integer> componentesFuertementeConexas(Graph<String> graph) {
         Map<String, Integer> componentes = new HashMap<>();
-        Map<String, Integer> f = new HashMap<>();
+        List<String> f = new ArrayList<>();
         Map<String, Boolean> visitados = new HashMap<>();
         dfsVisit(graph, visitados, componentes, f);
         
         Graph<String> simetricGraph = graph.getSimetric();
 
-        List<String> vertices = new ArrayList<>(f.keySet());
-        vertices.sort(Comparator.comparingInt(f::get).reversed());
+        Collections.reverse(f);
+
+        List<String> vertices = f;
 
         visitados.clear();
+        f.clear();
         componentes.clear();
 
-        dfsVisit(simetricGraph, visitados, componentes, f);
+        dfsVisit2(simetricGraph, visitados, componentes, f, vertices);
 
         return componentes;
     }
 
-    private static void dfsVisit(Graph<String> graph, Map<String, Boolean> visitados, Map<String, Integer> componentes, Map<String, Integer> f) {
-        time = 0;
+    private static void dfsVisit(Graph<String> graph, Map<String, Boolean> visitados, Map<String, Integer> componentes, List<String> f) {
         numComponente = 0;
 
         for (String vertex : graph.getAllVertices()) {
             visitados.put(vertex, false);
-            f.put(vertex, 0);
+            f.add(vertex);
         }
 
         for (String vertex : graph.getAllVertices()) {
@@ -47,8 +47,24 @@ class NextToYou {
         }
     }
 
-    private static void dfs(Graph<String> graph, Map<String, Boolean> visitados, Map<String, Integer> componentes, Map<String, Integer> f, String vertex) {
-        time++;
+    private static void dfsVisit2(Graph<String> graph, Map<String, Boolean> visitados, Map<String, Integer> componentes, List<String> f, List<String> vertices) {
+        numComponente = 0;
+
+        for (String vertex : graph.getAllVertices()) {
+            visitados.put(vertex, false);
+            f.add(vertex);
+        }
+
+        List<String> verticesCopy = new ArrayList<>(vertices);
+        for (String vertex : verticesCopy) {
+            if (!visitados.getOrDefault(vertex, false)) {
+                dfs(graph, visitados, componentes, f, vertex);
+                numComponente++;
+            }
+        }
+    }
+
+    private static void dfs(Graph<String> graph, Map<String, Boolean> visitados, Map<String, Integer> componentes, List<String> f, String vertex) {
         visitados.put(vertex, true);
         componentes.put(vertex, numComponente);
 
@@ -57,9 +73,7 @@ class NextToYou {
                 dfs(graph, visitados, componentes, f, vecino);
             }
         }
-
-        time++;
-        f.put(vertex, time);
+        f.add(vertex);
     }
 
     private static int maximoValorDeMap(Map<String, Integer> localidades){
