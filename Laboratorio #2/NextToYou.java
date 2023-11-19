@@ -1,13 +1,18 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
-class NextToYou {
+/*class NextToYou {
     private static int numComponente;
 
     public static Map<String, Integer> componentesFuertementeConexas(Graph<String> graph) {
@@ -159,5 +164,82 @@ class NextToYou {
         int numRepartidores = numeroDeRepartidores(localidades);
         // Imprimimos el resultado por la salida estandar.
         System.out.println("Cantidad de repartidores necesarios: " + numRepartidores);
+    }
+}
+*/
+public class NextToYou {
+    public static void main(String[] args) {
+        Map<String, Set<String>> adjacencyMap = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Caracas.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] commercePair = line.split(",");
+                String commerce1 = commercePair[0].trim();
+                String commerce2 = commercePair[1].trim();
+
+                adjacencyMap.computeIfAbsent(commerce1, k -> new HashSet<>()).add(commerce2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        List<Set<String>> localities = findLocalities(adjacencyMap);
+        printLocalities(localities);
+
+        int totalDrivers = calculateTotalDrivers(localities);
+        System.out.println("Número total de repartidores necesarios: " + totalDrivers);
+    }
+
+    private static List<Set<String>> findLocalities(Map<String, Set<String>> adjacencyMap) {
+        List<Set<String>> localities = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
+
+        for (String commerce : adjacencyMap.keySet()) {
+            if (!visited.contains(commerce)) {
+                Set<String> locality = new HashSet<>();
+                dfs(commerce, adjacencyMap, visited, locality);
+                localities.add(locality);
+            }
+        }
+
+        return localities;
+    }
+
+    private static void dfs(String commerce, Map<String, Set<String>> adjacencyMap, Set<String> visited, Set<String> locality) {
+        visited.add(commerce);
+        locality.add(commerce);
+
+        Set<String> neighbors = adjacencyMap.get(commerce);
+        if (neighbors != null) {
+            for (String neighbor : neighbors) {
+                if (!visited.contains(neighbor)) {
+                    dfs(neighbor, adjacencyMap, visited, locality);
+                }
+            }
+        }
+    }
+
+    private static void printLocalities(List<Set<String>> localities) {
+        System.out.println("Localidades encontradas:");
+        for (int i = 0; i < localities.size(); i++) {
+            System.out.println("Localidad " + (i + 1) + ": " + localities.get(i));
+        }
+    }
+
+    private static int calculateTotalDrivers(List<Set<String>> localities) {
+        int totalDrivers = 0;
+        for (Set<String> locality : localities) {
+            int size = locality.size();
+            if (size <= 2) {
+                totalDrivers += 10;
+            } else if (size <= 5) {
+                totalDrivers += 20;
+            } else {
+                totalDrivers += 30;
+            }
+        }
+        return totalDrivers;
     }
 }
