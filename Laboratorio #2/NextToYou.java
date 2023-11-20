@@ -54,43 +54,6 @@ public class NextToYou {
     }
     
     /**
-     * Imprime las localidades encontradas.
-     * 
-     * @param localidades la lista de localidades a imprimir
-     */
-    private static void imprimirLocalidades(List<List<String>> localidades) {
-        System.out.println("Localidades encontradas:");
-        for (int i = 0; i < localidades.size(); i++) {
-            System.out.println("Localidad " + (i + 1) + ": " + localidades.get(i));
-        }
-    }
-
-    /**
-     * Calcula el número total de conductores necesarios para cubrir todas las localidades.
-     * 
-     * @param localidades una lista de listas de cadenas que representa las localidades y sus comercios
-     * @return el número total de conductores necesarios
-     */
-    private static int calcularTotalDeConductores(List<List<String>> localidades) {
-        int totalConductores = 0;
-        //Iteramos sobre las localidades.
-        for (List<String> locality : localidades) {
-            //Vemos la cantidad de comercios que tiene cada localidad y acumulamos el numero 
-            //de conductores en totalConductores.
-            int size = locality.size();
-            if (size <= 2) {
-                totalConductores += 10;
-            } else if (size <= 5) {
-                totalConductores += 20;
-            } else {
-                totalConductores += 30;
-            }
-        }
-        //Retornamos el numero total de conductores.
-        return totalConductores;
-    }
-
-    /**
      * Realiza una búsqueda en profundidad (DFS) en el grafo dado.
      * Si cualDFS es true, entonces en la busqueda DFS se busca generar la lista de finalizados.
      * Si cualDFS es false, entonces en la busqueda DFS se busca generar las componentes fuertemente conexas.
@@ -129,6 +92,42 @@ public class NextToYou {
                 }
             }
         }
+    }
+    /**
+     * Imprime las localidades encontradas.
+     * 
+     * @param localidades la lista de localidades a imprimir
+     */
+    private static void imprimirLocalidades(List<List<String>> localidades) {
+        System.out.println("Localidades encontradas:");
+        for (int i = 0; i < localidades.size(); i++) {
+            System.out.println("Localidad " + (i + 1) + ": " + localidades.get(i));
+        }
+    }
+
+    /**
+     * Calcula el número total de conductores necesarios para cubrir todas las localidades.
+     * 
+     * @param localidades una lista de listas de cadenas que representa las localidades y sus comercios
+     * @return el número total de conductores necesarios
+     */
+    private static int calcularTotalDeConductores(List<List<String>> localidades) {
+        int totalConductores = 0;
+        //Iteramos sobre las localidades.
+        for (List<String> locality : localidades) {
+            //Vemos la cantidad de comercios que tiene cada localidad y acumulamos el numero 
+            //de conductores en totalConductores.
+            int size = locality.size();
+            if (size <= 2) {
+                totalConductores += 10;
+            } else if (size <= 5) {
+                totalConductores += 20;
+            } else {
+                totalConductores += 30;
+            }
+        }
+        //Retornamos el numero total de conductores.
+        return totalConductores;
     }
 
     /**
