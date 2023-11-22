@@ -211,6 +211,10 @@ class AdjacencyListGraph<T> implements Graph<T> {
                 //Conectamos el sucesor con vertex.
                 simetric.connect(sucesor, vertex);
             }
+
+            for (T predecesor : getInwardEdges(vertex)) {
+                simetric.connect(vertex, predecesor);
+            }
         }
         return simetric;
     }

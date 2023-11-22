@@ -1,6 +1,4 @@
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -174,4 +172,5 @@ public class NextToYou {
         //Imprimimos el numero total de repartidores necesarios.
         System.out.println("Número total de repartidores necesarios: " + totalConductores);
     }
+
 }

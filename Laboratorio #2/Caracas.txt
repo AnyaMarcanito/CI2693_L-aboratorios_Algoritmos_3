@@ -5,3 +5,4 @@ MacDonas, Farmanada
 Farmanada, MacDonas
 Sucy's Cookies, Farmanada
 Kagari Sushi, MacDonas
+MacDonas, Kagari Sushi
