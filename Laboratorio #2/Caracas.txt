@@ -6,3 +6,7 @@ Farmanada, MacDonas
 Sucy's Cookies, Farmanada
 Kagari Sushi, MacDonas
 MacDonas, Kagari Sushi
+Pizzeria Luigi, Trattoria Mario
+Trattoria Mario, Gelateria Peach
+Gelateria Peach, Pizzeria Luigi
+Kagari Sushi, Pizzeria Luigi
