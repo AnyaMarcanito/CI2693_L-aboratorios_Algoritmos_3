@@ -91,7 +91,7 @@ public class Arbitrage {
                         System.out.println(" ");
                         System.out.println(ANSI_YELLOW +"Siguiendo la siguiente secuencia de cambios: "+ ANSI_RESET+ circuito);
                         System.out.println(" ");
-                        System.out.println(ANSI_YELLOW +"Obteniendo la siguiente ganancia: "+ ANSI_RESET + ganancia + "%");
+                        System.out.println(ANSI_YELLOW +"Obteniendo el siguiente porcentaje de ganancia: "+ ANSI_RESET + ganancia + " %");
                         System.out.println(" ");
                     }
                 }
