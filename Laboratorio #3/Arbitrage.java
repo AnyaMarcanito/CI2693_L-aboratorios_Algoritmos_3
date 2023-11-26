@@ -114,7 +114,7 @@ public class Arbitrage {
     }
 
     /**
-     * Aplica el algoritmo de Dijkstra para encontrar caminos hasta los alcanzables del 
+     * Aplica el algoritmo de Dijkstra para encontrar caminos de costo maximo hasta los alcanzables del 
      * vertice indicado.
      * 
      * @param grafo: El grafo sobre el cual se va a aplicar el algoritmo de Dijkstra.
