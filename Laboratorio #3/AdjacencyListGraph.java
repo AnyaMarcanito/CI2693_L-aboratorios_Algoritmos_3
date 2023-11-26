@@ -9,6 +9,7 @@ interface GraphV2<T> {
     boolean contains(T vertex);
     List<ArcosConPesos<T>> getOutwardEdges(T from);
     List<T> getAllVertices();
+    Double getPeso(T from, T to);
 }
 
 class ArcosConPesos<T> {
@@ -97,38 +98,5 @@ class AdjacencyListGraph<T> implements GraphV2<T> {
         }
         return null; // La arista no existe o los vértices no se encontraron
     }
-
-    /*public static void main(String[] args) {
-        // Creamos un grafo dirigido con pesos en los arcos
-        AdjacencyListGraph<String> graph = new AdjacencyListGraph<>();
-
-        // Agregamos vértices al grafo
-        graph.add("A");
-        graph.add("B");
-        graph.add("C");
-        graph.add("D");
-
-        // Conectamos vértices con arcos y pesos
-        graph.connect("A", "B", 2.0);
-        graph.connect("A", "C", 3.0);
-        graph.connect("B", "C", 1.0);
-        graph.connect("B", "D", 4.0);
-        graph.connect("C", "D", 5.0);
-
-        // Imprimimos los vértices del grafo
-        List<String> vertices = graph.getAllVertices();
-        System.out.println("Vértices: " + vertices);
-
-        // Imprimimos los arcos salientes de un vértice
-        List<ArcosConPesos<String>> successors = graph.getOutwardEdges("A");
-        System.out.println("Arcos salientes de A: ");
-        for (ArcosConPesos<String> arco : successors) {
-            System.out.println(arco);
-        }
-
-        // Obtenemos el peso de un arco
-        Double peso = graph.getPeso("A", "B");
-        System.out.println("Peso de A -> B: " + peso);
-    }*/
 }
 
